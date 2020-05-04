@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta  charset="utf-8"/>
+        <title>WHS</title>
+    </head>
+    <body>
+          <h1>When He Says...</h1>
+          <p>understand what he means!</p>
+          <form method="GET" action="http://localhost:8080/assertions">
+              <input type="text" name="search" placeholder="Search...">
+          </form>
+          <?php if (isset($assertions)) : ?>
+            <?php if (count($assertions) > 0) : ?>
+                 <?php foreach ($assertions as $assertion): ?>
+                    <p>
+                    <em>“<?php print($assertion->sentence); ?>”</em>
+                    <?php print($assertion->topic); ?>
+                    </p>
+                 <?php endforeach; ?>
+            <?php else: ?>
+              <p>Oups! No result.</p>
+            <?php endif; ?>
+          <?php else: ?>
+            <p>Oups! Server unavailable.</p>
+          <?php endif; ?>
+    </body>
+</html>
