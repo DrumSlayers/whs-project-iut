@@ -35,6 +35,25 @@ $app->get('/API/assertions', function(Request $request, Response $response, $arg
   }
 );
 
+// API Assertion with ID
+$app->get('/API/assertions/[{id}]', function(Request $request, Response $response, $args) {
+
+    // SQL query with eloquent ORM
+    $result = App\Assertion::find($args['id']);
+
+    // encoding SQL query response to JSON
+    $assertions = json_encode($result);
+
+    // define the response content header to json MIME type
+    $response = $response->withHeader('Content-type', 'application/json');
+    // initialise $body with a raw body from the response
+    $body = $response->getBody();
+    // write $body with the encoded json
+    $body->write($assertions);
+    
+    return $response;
+  }
+);
 
 // Get an html view of assertions
 $app->get('/assertions', function (Request $request, Response $response, $args) {
@@ -61,5 +80,6 @@ $app->get('/assertions', function (Request $request, Response $response, $args) 
     // prepare data for the template
     $args['assertions'] = json_decode($assertions);
     return $this->renderer->render($response, 'assertions.phtml', $args);
-});
+  }
+);
 
