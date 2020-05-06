@@ -14,18 +14,14 @@ $app->get('/API/assertions', function(Request $request, Response $response, $arg
 
     // prepare the search query.
     $search=$request->getQueryParam('search');
+
     if (strlen($search) == 0)
       $search = '.';
-    // pdo
-    $settings = $this->get('settings')['db'];
-    $db = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'] .";charset=utf8", $settings['user'], $settings['password']);
 
-    // SQL query
-    $search = str_replace(" ", "|", $search);
-    $query = $db->prepare("SELECT * FROM api_assertion WHERE sentence REGEXP :search");
-    $query->bindParam('search', $search);
-    $query->execute();
-    $result = $query->fetchAll();
+    // SQL query with eloquent ORM
+    $result = App\Assertion::where('sentence', 'like', '%' . $search . '%')->get();
+
+    // encoding SQL query response to JSON
     $assertions = json_encode($result);
 
     // define the response content header to json MIME type
@@ -45,7 +41,7 @@ $app->get('/assertions', function (Request $request, Response $response, $args) 
 
     // prepare the search query with arg ?search from the request and prepare the search query for cURL.
     $search=$request->getQueryParam('search');
-    
+
     if (strlen($search) == 0)
       $search = '';
     else

@@ -19,9 +19,13 @@ return [
         // Database connection settings
         'db' => [
             'host' => '127.0.0.1',
-            'dbname' => 'whs',
-            'user' => 'whs_user',
-            'password' => 'whs_password'
+            'database' => 'whs',
+            'username' => 'whs_user',
+            'password' => 'whs_password',
+            'driver' => 'mysql',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
         ],
     ],
 ];
