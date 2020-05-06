@@ -1,5 +1,6 @@
 @echo off
 :: Script pour d‚marrer tout le projet WHS - Pierre S. <drumslayer@drumslayer.ovh>
+:: Encodage CP 850
 
 :: ------ CONFIG ------
 :: R‚pertoire de MySQL (racine) sans le /bin
