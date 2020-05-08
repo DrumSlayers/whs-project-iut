@@ -4,4 +4,4 @@ This application is a learning project from the M4207 Module of DUT Réseaux & T
 
 The project use the Slim Skeleton 3
 
-Public entrypoint is on /public/index.php
+Public entrypoint is on /public/index.php.
