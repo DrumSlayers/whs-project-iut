@@ -150,31 +150,3 @@ $app->delete('/API/assertions/[{id}]', function(Request $request, Response $resp
   return $response;
 }
 );
-
-// Get an html view of assertions
-$app->get('/assertions', function (Request $request, Response $response, $args) {
-
-    // prepare the search query with arg ?search from the request and prepare the search query for cURL.
-    $search=$request->getQueryParam('search');
-
-    if (strlen($search) == 0)
-      $search = '';
-    else
-      $search='?search=' . $search;
-
-    // Initialise cURL for API calls
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_URL => 'http://localhost:8081/API/assertions' . $search
-    ));
-
-    // set $assertions with JSON data from curl
-    $assertions = curl_exec($curl);
-    curl_close($curl);
-
-    // prepare data for the template
-    $args['assertions'] = json_decode($assertions);
-    return $this->renderer->render($response, 'assertions.phtml', $args);
-  }
-);

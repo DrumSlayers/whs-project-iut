@@ -12,8 +12,9 @@ set MySQL_user="whs_user"
 :: Mot de passe MySQL
 set MySQL_password="whs_password"
 
-:: RÇpertoire de votre projet WHS (Racine)
-set WHS_dir=""D:\Bibliothäques Windows\Documents\whs-basic\whs-project-iut\""
+:: RÇpertoire de votre projet WHS (Client + Server)
+set WHS_dir_client=""D:\Bibliothäques Windows\Documents\whs-basic\whs-project-iut\client\""
+set WHS_dir_server=""D:\Bibliothäques Windows\Documents\whs-basic\whs-project-iut\server\""
 
 :: ------ FIN CONFIG ------
 
@@ -22,7 +23,7 @@ sleep 2
 start "MySQL Command Line Interface" /D "%MySQL_dir%\bin" cmd /K "mysql -u %MySQL_user% -p%MySQL_password%"
 :: Changez "whs_user" par votre user et "whs_password" par votre mdp
 
-start "Slim Web Server 1 (8080)" /D "%WHS_dir%" php -S localhost:8080 -t public
-start "Slim Web Server 2 (8081)" /D "%WHS_dir%" php -S localhost:8081 -t public
+start "Slim Web Server 1 (Client on 8080)" /D "%WHS_dir_client%" php -S localhost:8080 -t public
+start "Slim Web Server 2 (Server on 8081)" /D "%WHS_dir_server%" php -S localhost:8081 -t public
 
 exit 0
