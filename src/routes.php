@@ -178,4 +178,3 @@ $app->get('/assertions', function (Request $request, Response $response, $args) 
     return $this->renderer->render($response, 'assertions.phtml', $args);
   }
 );
-

@@ -15,7 +15,9 @@
                  <?php foreach ($assertions as $assertion): ?>
                     <p>
                     <em>“<?php print($assertion->sentence); ?>”</em>
-                    <?php print($assertion->topic); ?>
+                    <?php 
+                      print($assertion->topic);
+                    ?> 
                     </p>
                  <?php endforeach; ?>
             <?php else: ?>
